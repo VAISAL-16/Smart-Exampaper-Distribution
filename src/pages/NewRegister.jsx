@@ -4,8 +4,7 @@ import { ShieldCheck, Mail, Lock, User, ArrowRight, Briefcase, Eye, EyeOff, Phon
 import { toast } from "sonner";
 import { useAuth } from "../context/AuthContext";
 import GoogleSignInButton from "../components/GoogleSignInButton";
-
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+import { getApiBase } from "../utils/apiBase";
 
 function NewRegister() {
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ function NewRegister() {
 
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE}/api/auth/register`, {
+      const response = await fetch(`${getApiBase()}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone, password, role })
@@ -63,7 +62,7 @@ function NewRegister() {
 
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE}/api/auth/google`, {
+      const response = await fetch(`${getApiBase()}/api/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, role })

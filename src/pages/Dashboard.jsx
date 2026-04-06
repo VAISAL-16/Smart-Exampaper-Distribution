@@ -25,8 +25,7 @@ import {
 } from "recharts";
 import { getDbValue } from "../utils/dbStore";
 import { authFetch } from "../utils/authFetch";
-
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+import { getApiBase } from "../utils/apiBase";
 const STATUS_COLORS = {
   RELEASED: "#10b981",
   VERIFIED_LOCKED: "#3b82f6",
@@ -92,7 +91,7 @@ function Dashboard() {
       setSystemConfig(configRows?.[0] || { unlockLeadMinutes: 5 });
 
       try {
-        const response = await authFetch(`${API_BASE}/api/centers`);
+        const response = await authFetch(`${getApiBase()}/api/centers`);
         if (response.ok) {
           const payload = await response.json();
           const centerRows = Array.isArray(payload?.data) ? payload.data : [];

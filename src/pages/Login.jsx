@@ -4,8 +4,7 @@ import { Mail, Lock, ArrowRight, Eye, EyeOff, KeyRound, Globe2, RotateCcw, Shiel
 import { toast } from "sonner";
 import { useAuth } from "../context/AuthContext";
 import GoogleSignInButton from "../components/GoogleSignInButton";
-
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+import { getApiBase } from "../utils/apiBase";
 const SESSION_EXPIRED_NOTICE_KEY = "sessionExpiredNotice";
 
 function Login() {
@@ -66,7 +65,7 @@ function Login() {
 
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_BASE}/api/auth/login/request-otp`, {
+      const response = await fetch(`${getApiBase()}/api/auth/login/request-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -94,7 +93,7 @@ function Login() {
     }
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_BASE}/api/auth/login/verify-otp`, {
+      const response = await fetch(`${getApiBase()}/api/auth/login/verify-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: otpEmail, otp: otpCode })
@@ -113,7 +112,7 @@ function Login() {
 
   const handleGoogleToken = async (token) => {
     try {
-      const response = await fetch(`${API_BASE}/api/auth/google`, {
+      const response = await fetch(`${getApiBase()}/api/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token })
@@ -146,7 +145,7 @@ function Login() {
     }
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_BASE}/api/auth/forgot/request-otp`, {
+      const response = await fetch(`${getApiBase()}/api/auth/forgot/request-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: normalizedEmail, deliveryChoice: "EMAIL" })
@@ -176,7 +175,7 @@ function Login() {
     }
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_BASE}/api/auth/forgot/verify-otp`, {
+      const response = await fetch(`${getApiBase()}/api/auth/forgot/verify-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: forgotEmail, otp: forgotOtp })
@@ -208,7 +207,7 @@ function Login() {
     }
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_BASE}/api/auth/forgot/complete`, {
+      const response = await fetch(`${getApiBase()}/api/auth/forgot/complete`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

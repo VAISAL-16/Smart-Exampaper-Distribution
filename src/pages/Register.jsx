@@ -13,8 +13,7 @@ import {
 import { motion } from "motion/react";
 import { toast } from "sonner";
 import { useAuth } from "../context/AuthContext";
-
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+import { getApiBase } from "../utils/apiBase";
 
 function Register() {
     const navigate = useNavigate();
@@ -38,7 +37,7 @@ function Register() {
         }
 
         try {
-            const response = await fetch(`${API_BASE}/api/auth/register`, {
+            const response = await fetch(`${getApiBase()}/api/auth/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, password, role })

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Clock3, MapPin, Printer, ShieldCheck, TimerReset } from "lucide-react";
 import { getDbValue } from "../utils/dbStore";
 import { authFetch } from "../utils/authFetch";
+import { getApiBase } from "../utils/apiBase";
 
 const getExamStart = (exam) => {
   if (!exam?.date || !exam?.time) return null;
@@ -45,7 +46,7 @@ function InvigilatorReadiness() {
 
       try {
         const response = await authFetch(
-          `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/centers`
+          `${getApiBase()}/api/centers`
         );
         const payload = response.ok ? await response.json() : null;
         const rows = Array.isArray(payload?.data) ? payload.data : [];

@@ -1,8 +1,6 @@
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+import { getApiBase } from "./apiBase";
 
 export const getAuthToken = () => localStorage.getItem("authToken") || "";
-
-export const getApiBase = () => API_BASE;
 
 export const authFetch = async (input, init = {}) => {
   const token = getAuthToken();

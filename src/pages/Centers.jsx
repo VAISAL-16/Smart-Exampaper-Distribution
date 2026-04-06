@@ -2,8 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Building2, Save, MapPin, Phone, UserCircle2, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { authFetch } from "../utils/authFetch";
-
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+import { getApiBase } from "../utils/apiBase";
 const INDIAN_STATES = [
   "Andhra Pradesh",
   "Arunachal Pradesh",
@@ -63,7 +62,7 @@ function Centers() {
 
   const loadCenters = async () => {
     try {
-      const response = await authFetch(`${API_BASE}/api/centers`);
+      const response = await authFetch(`${getApiBase()}/api/centers`);
       if (!response.ok) throw new Error("fetch_failed");
       const data = await response.json();
       setCenters(Array.isArray(data?.data) ? data.data : []);
@@ -113,7 +112,7 @@ function Centers() {
 
     setSaving(true);
     try {
-      const response = await authFetch(`${API_BASE}/api/centers/master`, {
+      const response = await authFetch(`${getApiBase()}/api/centers/master`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)
