@@ -1,0 +1,1 @@
+import{f as i}from"./index-BFynrniS.js";const d=async(t,a,o)=>{const n={id:`L-${Date.now()}`,user:t,action:a,subject:o,time:new Date().toLocaleString(),hash:Math.random().toString(36).substring(2,10)};await i("auditLogs",(e=[])=>[n,...e],[])};export{d as a};

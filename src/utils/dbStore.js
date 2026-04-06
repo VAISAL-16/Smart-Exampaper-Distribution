@@ -1,4 +1,5 @@
-import { authFetch, getApiBase } from "./authFetch";
+import { authFetch } from "./authFetch";
+import { getApiBase } from "./apiBase";
 
 const getUrl = (key) => `${getApiBase()}/api/store/${encodeURIComponent(key)}`;
 

@@ -1,4 +1,5 @@
-import { authFetch, getApiBase } from "../utils/authFetch";
+import { authFetch } from "../utils/authFetch";
+import { getApiBase } from "../utils/apiBase";
 
 const jsonHeaders = { "Content-Type": "application/json" };
 

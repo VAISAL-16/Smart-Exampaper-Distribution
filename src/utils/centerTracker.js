@@ -1,4 +1,5 @@
-import { authFetch, getApiBase } from "./authFetch";
+import { authFetch } from "./authFetch";
+import { getApiBase } from "./apiBase";
 
 export const trackCenterEvent = async ({ centerName, requestEvent, paperEvent, printEvent }) => {
   if (!centerName) return;
